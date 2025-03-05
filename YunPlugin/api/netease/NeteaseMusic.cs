@@ -555,15 +555,15 @@ namespace YunPlugin.api.netease
                 var currentTime = Utils.GetTimeStampMs();
                 if (vipResult.data.redplus.expireTime > currentTime)
                 {
-                    extra = $"SVIP {vipResult.data.redVipLevel}级";
+                    extra = $"SVIP {vipResult.data.redVipLevel}级 到期时间: {Utils.ConvertTimeStamp(vipResult.data.redplus.expireTime)}";
                 }
                 else if (vipResult.data.associator.expireTime > currentTime)
                 {
-                    extra = $"VIP {vipResult.data.associator.vipLevel}级";
+                    extra = $"VIP {vipResult.data.associator.vipLevel}级 到期时间: {Utils.ConvertTimeStamp(vipResult.data.associator.expireTime)}";
                 }
                 else if (vipResult.data.musicPackage.expireTime > currentTime)
                 {
-                    extra = $"音乐包 {vipResult.data.musicPackage.vipLevel}级";
+                    extra = $"音乐包 {vipResult.data.musicPackage.vipLevel}级 到期时间: {Utils.ConvertTimeStamp(vipResult.data.musicPackage.expireTime)}";
                 }
             }
 

@@ -56,6 +56,12 @@ public static class Utils
         return Convert.ToInt64(ts.TotalMilliseconds);
     }
 
+    public static string ConvertTimeStamp(long timestamp)
+    {
+        DateTime dtStart = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
+        return dtStart.AddMilliseconds(timestamp).ToString("yyyy-MM-dd HH:mm:ss");
+    }
+
     public static bool IsNumber(string strNumber)
     {
         Regex regex = new Regex(@"^\d+$");
