@@ -39,6 +39,7 @@ namespace YunPlugin.api.netease
     {
         public long id { get; set; }
         public string url { get; set; }
+        public object freeTrialInfo { get; set; }
     }
 
     public class MusicURL
@@ -283,5 +284,28 @@ namespace YunPlugin.api.netease
     {
         public long code { get; set; }
         public string message { get; set; }
+    }
+
+    public class VIPResult
+    {
+        public class VIPData
+        {
+            public class VIPInfo
+            {
+                public int vipCode { get; set; }
+                public long expireTime { get; set; }
+                public int vipLevel { get; set; }
+            }
+
+            public int redVipLevel { get; set; }
+            public int redVipAnnualCount { get; set; }
+            public VIPInfo musicPackage { get; set; }
+            public VIPInfo associator { get; set; }
+            public VIPInfo redplus { get; set; }
+        }
+
+        public string message { get; set; }
+        public VIPData data { get; set; }
+        public int code { get; set; }
     }
 }

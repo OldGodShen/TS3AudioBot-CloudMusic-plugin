@@ -88,6 +88,10 @@ namespace YunPlugin.api.netease
                     "/song/url",
                     new Dictionary<string, string> { { "id", Id } }
                 );
+            if (musicURL.data[0].freeTrialInfo != null)
+            {
+                return "error:VIP歌曲";
+            }
             return musicURL.data[0].url;
         }
     }
@@ -543,11 +547,32 @@ namespace YunPlugin.api.netease
                 return null;
             }
 
+            VIPResult vipResult = await httpClient.Get<VIPResult>("/vip/info");
+
+            string extra = "无VIP";
+            if (vipResult != null && vipResult.code == 200 && vipResult.data != null && vipResult.data.redVipAnnualCount != -1)
+            {
+                var currentTime = Utils.GetTimeStampMs();
+                if (vipResult.data.redplus.expireTime > currentTime)
+                {
+                    extra = $"SVIP {vipResult.data.redVipLevel}级";
+                }
+                else if (vipResult.data.associator.expireTime > currentTime)
+                {
+                    extra = $"VIP {vipResult.data.associator.vipLevel}级";
+                }
+                else if (vipResult.data.musicPackage.expireTime > currentTime)
+                {
+                    extra = $"音乐包 {vipResult.data.musicPackage.vipLevel}级";
+                }
+            }
+
             return new UserInfo
             {
                 Id = status.data.profile.userId.ToString(),
                 Name = status.data.profile.nickname,
-                Url = $"https://music.163.com/#/user/home?id={status.data.profile.userId}"
+                Url = $"https://music.163.com/#/user/home?id={status.data.profile.userId}",
+                Extra = extra
             };
         }
     }

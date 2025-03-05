@@ -472,7 +472,7 @@ namespace YunPlugin
         }
 
         [Command("yun status")]
-        public async Task<string> CommandStatusAsync()
+        public async Task<string> CommandStatus()
         {
             string result = "\n";
             foreach (var api in musicApiInterfaces)
@@ -487,7 +487,12 @@ namespace YunPlugin
                     }
                     else
                     {
-                        result += $"[URL={userInfo.Url}]{userInfo.Name}[/URL]\n";
+                        result += $"[URL={userInfo.Url}]{userInfo.Name}[/URL]";
+                        if (userInfo.Extra != null)
+                        {
+                            result += $" ({userInfo.Extra})";
+                        }
+                        result += "\n";
                     }
                 }
                 catch (Exception e)
