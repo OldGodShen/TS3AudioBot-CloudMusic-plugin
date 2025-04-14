@@ -34,10 +34,11 @@ jobs:
       - name: Build solution
         run: |
           dotnet build "YunPlugin/YunPlugin.sln" --configuration Release
+          dir
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: YunPlugin-Build
           path: |
-            YunPlugin/bin/Release/YunBot.dll
+            YunPlugin/bin/Release/
