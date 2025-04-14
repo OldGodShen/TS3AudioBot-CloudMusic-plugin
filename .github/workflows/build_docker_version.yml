@@ -27,5 +27,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: YunPlugin-Docker-Build
+          compression-level: 0
           path: |
             YunPlugin/bin/Release/netcoreapp3.1/YunBot.dll
