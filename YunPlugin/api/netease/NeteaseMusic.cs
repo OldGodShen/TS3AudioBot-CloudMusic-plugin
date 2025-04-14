@@ -553,6 +553,7 @@ namespace YunPlugin.api.netease
             if (vipResult != null && vipResult.code == 200 && vipResult.data != null && vipResult.data.redVipAnnualCount != -1)
             {
                 var currentTime = Utils.GetTimeStampMs();
+                extra = currentTime;
                 if (vipResult.data.redplus.expireTime > currentTime)
                 {
                     extra = $"SVIP {vipResult.data.redVipLevel}级 到期时间: {Utils.ConvertTimeStamp(vipResult.data.redplus.expireTime)}";
