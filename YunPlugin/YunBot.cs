@@ -66,6 +66,7 @@ namespace YunPlugin
             playManager.AfterResourceStarted += PlayManager_AfterResourceStarted;
             playManager.PlaybackStopped += PlayManager_PlaybackStopped;
 
+
             if (config.AutoPause) {
                 TS3FullClient.OnEachClientLeftView += OnEachClientLeftView;
                 TS3FullClient.OnEachClientEnterView += OnEachClientEnterView;
@@ -184,7 +185,8 @@ namespace YunPlugin
             R<ClientList[], CommandError> r = await TS3FullClient.ClientList();
             if (!r)
             {
-                throw new Exception($"Clientlist failed ({r.Error.ErrorFormat()})");
+                Log.Warn($"Clientlist failed ({r.Error.ErrorFormat()})");
+                return;
             }
             foreach (var client in r.Value.ToList())
             {
