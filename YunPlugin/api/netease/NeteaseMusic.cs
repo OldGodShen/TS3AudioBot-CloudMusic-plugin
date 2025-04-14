@@ -351,8 +351,8 @@ namespace YunPlugin.api.netease
                     }
                     if (code == 803)
                     {
-                        result = "登录成功";
-                        await ts3Client.SendChannelMessage("登录成功1");
+                        result = "登录成功2";
+                        await ts3Client.SendChannelMessage("二维码登录成功");
                         Config.RefreshCookie = true;
                         break;
                     }
@@ -391,7 +391,7 @@ namespace YunPlugin.api.netease
                     if (status.code == 200)
                     {
                         Cookie = Utils.ProcessCookie(status.cookie);
-                        return "登录成功";
+                        return "登录成功3";
                     }
                     else
                     {
