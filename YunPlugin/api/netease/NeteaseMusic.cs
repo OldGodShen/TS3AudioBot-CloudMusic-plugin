@@ -567,6 +567,13 @@ namespace YunPlugin.api.netease
                 }
             }
 
+            if (vipResult.data.redVipAnnualCount == 1)
+            {
+                extra = $"年费{extra}";
+            }else{
+                extra = $"非年费{extra}";
+            }
+
             return new UserInfo
             {
                 Id = status.data.profile.userId.ToString(),

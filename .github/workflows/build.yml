@@ -40,4 +40,4 @@ jobs:
         with:
           name: YunPlugin-Build
           path: |
-            YunPlugin/bin/Release/
+            YunPlugin/bin/Release/YunBot.dll
