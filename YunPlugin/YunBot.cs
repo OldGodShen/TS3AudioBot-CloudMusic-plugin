@@ -614,7 +614,11 @@ namespace YunPlugin
             }
             if (sp.Length > argsLen)
             {
-                throw new CommandException($"参数过多 {useHelp}", CommandExceptionReason.CommandError);
+                //throw new CommandException($"参数过多 {useHelp}", CommandExceptionReason.CommandError);
+                string[] newSP = new string[argsLen];
+                Array.Copy(sp, newSP, argsLen - 1);
+                newSP[argsLen - 1] = string.Join(" ", sp.Skip(argsLen - 1));
+                sp = newSP;
             }
 
             if (sp.Length >= 2 && (sp.Last() == "max" || (Utils.IsNumber(sp.Last()) && sp.Length <= 4)))

@@ -329,14 +329,15 @@ namespace YunPlugin.api.qq
 
         public override async Task<string> Login(string[] args)
         {
-            if (args.Length != 2)
+            var type = args[0];
+            var data = string.Join(" ", args.Skip(1));
+            if (data == "")
             {
                 return "参数错误 [set|get] {cookie|uin}";
             }
-            var type = args[0];
             if (type == "set")
             {
-                var cookie = Utils.ProcessCookie(args[1]);
+                var cookie = Utils.ProcessCookie(data);
                 var cookieDict = Utils.CookieToDict(cookie);
                 if (!cookieDict.ContainsKey("uin"))
                 {
@@ -357,7 +358,6 @@ namespace YunPlugin.api.qq
             }
             else if (type == "get")
             {
-                var uin = args[1];
                 var response = await httpClient.GetHttpResponse("/user/getCookie");
                 var heades = response.Headers;
 
@@ -373,7 +373,7 @@ namespace YunPlugin.api.qq
                 {
                     var newCookie = Utils.MergeCookie(Cookie, Utils.ProcessCookie(cookie));
                     Cookie = newCookie;
-                    Config.Uin = uin;
+                    Config.Uin = data;
                     Config.Save();
                     return "获取成功";
                 }
