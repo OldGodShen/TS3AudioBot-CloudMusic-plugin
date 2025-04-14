@@ -346,13 +346,13 @@ namespace YunPlugin.api.netease
                     if (i == 120)
                     {
                         result = "二维码登录失败或者超时";
-                        await ts3Client.SendChannelMessage("二维码登录失败或者超时");
+                        //await ts3Client.SendChannelMessage("二维码登录失败或者超时");
                         break;
                     }
                     if (code == 803)
                     {
                         result = "二维码登录成功";
-                        await ts3Client.SendChannelMessage("二维码登录成功");
+                        //await ts3Client.SendChannelMessage("二维码登录成功");
                         Config.RefreshCookie = true;
                         break;
                     }
