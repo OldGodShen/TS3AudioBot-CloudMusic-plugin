@@ -346,7 +346,7 @@ namespace YunPlugin.api.netease
                     if (i == 120)
                     {
                         result = "二维码登录失败或者超时";
-                        await ts3Client.SendChannelMessage("登录失败或者超时");
+                        //await ts3Client.SendChannelMessage("二维码登录失败或者超时");
                         break;
                     }
                     if (code == 803)
@@ -358,7 +358,7 @@ namespace YunPlugin.api.netease
                     }
                 }
                 await ts3Client.DeleteAvatar();
-                await ts3Client.ChangeDescription("已登录");
+                await ts3Client.ChangeDescription("网易云已登录");
                 Cookie = Utils.ProcessCookie(cookies);
 
                 return result;
