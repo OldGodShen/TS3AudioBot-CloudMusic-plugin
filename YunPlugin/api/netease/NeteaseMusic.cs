@@ -330,7 +330,7 @@ namespace YunPlugin.api.netease
                 byte[] bytes = Convert.FromBase64String(img[1]);
                 Stream stream = new MemoryStream(bytes);
                 await ts3Client.UploadAvatar(stream);
-                await ts3Client.ChangeDescription("请用网易云APP扫描二维码登陆");
+                await ts3Client.ChangeDescription("请用网易云APP扫描二维码登录");
 
                 int i = 0;
                 long code;
@@ -345,20 +345,20 @@ namespace YunPlugin.api.netease
                     Thread.Sleep(1000);
                     if (i == 120)
                     {
-                        result = "登陆失败或者超时";
-                        await ts3Client.SendChannelMessage("登陆失败或者超时");
+                        result = "登录失败或者超时";
+                        await ts3Client.SendChannelMessage("登录失败或者超时");
                         break;
                     }
                     if (code == 803)
                     {
-                        result = "登陆成功";
-                        await ts3Client.SendChannelMessage("登陆成功");
+                        result = "登录成功";
+                        await ts3Client.SendChannelMessage("登录成功1");
                         Config.RefreshCookie = true;
                         break;
                     }
                 }
                 await ts3Client.DeleteAvatar();
-                await ts3Client.ChangeDescription("已登陆");
+                await ts3Client.ChangeDescription("已登录");
                 Cookie = Utils.ProcessCookie(cookies);
 
                 return result;
@@ -391,11 +391,11 @@ namespace YunPlugin.api.netease
                     if (status.code == 200)
                     {
                         Cookie = Utils.ProcessCookie(status.cookie);
-                        return "登陆成功";
+                        return "登录成功";
                     }
                     else
                     {
-                        return "登陆失败";
+                        return "登录失败";
                     }
                 }
                 else
