@@ -345,14 +345,14 @@ namespace YunPlugin.api.netease
                     Thread.Sleep(1000);
                     if (i == 120)
                     {
-                        result = "登录失败或者超时";
+                        result = "二维码登录失败或者超时";
                         await ts3Client.SendChannelMessage("登录失败或者超时");
                         break;
                     }
                     if (code == 803)
                     {
-                        result = "登录成功2";
-                        await ts3Client.SendChannelMessage("二维码登录成功");
+                        result = "二维码登录成功";
+                        //await ts3Client.SendChannelMessage("二维码登录成功");
                         Config.RefreshCookie = true;
                         break;
                     }
@@ -391,7 +391,7 @@ namespace YunPlugin.api.netease
                     if (status.code == 200)
                     {
                         Cookie = Utils.ProcessCookie(status.cookie);
-                        return "登录成功3";
+                        return "登录成功";
                     }
                     else
                     {
